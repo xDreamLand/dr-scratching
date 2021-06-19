@@ -1,9 +1,9 @@
 # esx_dreamscratching
 FiveM - Scratching Card Resource
 
-Discord Support: https://discord.gg/kYvKcUVjq4
-Forum Post: https://forum.cfx.re/t/free-scratch-card-esx/3461621
-Author: Ruwbix aka xDreamLand
+- Discord Support: https://discord.gg/kYvKcUVjq4
+- Forum Post: https://forum.cfx.re/t/free-scratch-card-esx/3461621
+- Author: Ruwbix aka xDreamLand
 
 ## Features
 * ESX, if you got a bit of resource experience you *could* probably change it to a different framework really easily though!
