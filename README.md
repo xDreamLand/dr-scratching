@@ -1,6 +1,8 @@
 # esx_dreamscratching
 FiveM - Scratching Card Resource
 
+Discord Support: https://discord.gg/kYvKcUVjq4
+
 ## Features
 * ESX, if you got a bit of resource experience you *could* probably change it to a different framework really easily though!
 * NUI included. Not just a boring 'use item' and get money
