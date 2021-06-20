@@ -46,7 +46,7 @@ AddEventHandler("esx_dreamscratching:handler", function(returncooldown, cooldown
 
         if randomNumber > add and randomNumber <= add + chance then
             TriggerClientEvent("esx_dreamscratching:nuiOpenCard", _source, price) -- open the scratch ticket with the random price
-		players[tempsrc].money = price
+		players[tempsrc] = price
             return price
         end
         add = add + chance
@@ -67,7 +67,7 @@ AddEventHandler("esx_dreamscratching:deposit", function(amount)
         return
     else 
 	local tempsrc = tonumber(_source)
-	if players[tempsrc].money == amount then
+	if players[tempsrc] == amount then
 		xPlayer.addMoney(amount) -- add the price money to the player
 		TriggerClientEvent("esx_dreamscratching:setCooldown", _source) -- start scratch cooldown
 		if Config.ShowResultTicketNotification then
