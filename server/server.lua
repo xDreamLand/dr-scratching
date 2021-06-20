@@ -67,7 +67,7 @@ AddEventHandler("esx_dreamscratching:deposit", function(amount)
         return
     else 
 	local tempsrc = tonumber(_source)
-	if players.[tempsrc].money == amount then
+	if players[tempsrc].money == amount then
 		xPlayer.addMoney(amount) -- add the price money to the player
 		TriggerClientEvent("esx_dreamscratching:setCooldown", _source) -- start scratch cooldown
 		if Config.ShowResultTicketNotification then
