@@ -1,11 +1,12 @@
 var debugMode = false;
-var toFillInPercentage, win_message, lose_message, currency;
+var resourceName, toFillInPercentage, win_message, lose_message, currency;
 
 $(function() {
     window.addEventListener('message', function(event) {
         if (event.data.type === "openScratch") {
             $('body').fadeIn(500);
 
+            resourceName = event.data.resourceName;
             debugMode = event.data.debug;
             toFillInPercentage = event.data.scratchAmount;
             win_message = event.data.win_message;
@@ -99,10 +100,10 @@ function handlePercentage(filledInPixels) {
     filledInPixels = filledInPixels || 0;
     debugMode == true ? console.log(filledInPixels + '%') : '';
     if (filledInPixels > toFillInPercentage) {
-        canvas.parentNode.removeChild(canvas);
+        try { canvas.parentNode.removeChild(canvas); } catch (err) {}
 
         var winningAmount = document.getElementById('price-hidden').innerHTML
-        $.post('https://esx_dreamscratching/deposit', JSON.stringify({
+        $.post('https://' + resourceName + '/deposit', JSON.stringify({
             amount: winningAmount
         }));
     }
@@ -140,7 +141,7 @@ function handleMouseUp(e) {
 
 $(document).on('keyup', function(data) {
     if (data.which == 27) {
-        $.post('https://esx_dreamscratching/nuiCloseCard', JSON.stringify({}));
+        $.post('https://' + resourceName + '/nuiCloseCard', JSON.stringify({}));
         window.location.reload();
     }
 })

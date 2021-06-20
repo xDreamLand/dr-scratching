@@ -13,6 +13,7 @@ AddEventHandler("esx_dreamscratching:nuiOpenCard", function(price)
             lose_message = _U('scratch_lost'),
             currency = _U('currency'),
             scratchAmount = Config.ScratchAmount,
+            resourceName = GetCurrentResourceName(),
             debug = Config.DebugMode
         })
         inMenu = true

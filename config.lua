@@ -1,4 +1,4 @@
--- VERSION [1.0 RELEASED]
+-- VERSION [1.1 RELEASED]
 
 Config = {}
 
