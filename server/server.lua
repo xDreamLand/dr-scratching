@@ -1,4 +1,5 @@
 ESX = nil
+local players = {}
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local totalSumChance = 0
@@ -27,16 +28,22 @@ AddEventHandler("esx_dreamscratching:handler", function(returncooldown, cooldown
         return
     end
     
-    -- removing ticket
-    xPlayer.removeInventoryItem('scratch_ticket', 1)
-    if Config.ShowUsedTicketNotification then
-	    xPlayer.showNotification(_U('used_scratchticket'))
+    local count = xPlayer.getInventoryItem('scratch_ticket').count
+    if count >= 1 then
+        -- removing ticket
+        xPlayer.removeInventoryItem('scratch_ticket', 1)
+        if Config.ShowUsedTicketNotification then
+            xPlayer.showNotification(_U('used_scratchticket'))
+        end
+    else 
+        print(('%s (%s) somehow used a scratching ticket without having one. Cancelled'):format(GetPlayerName(_source), GetPlayerIdentifier(_source, 0)))
+        return
     end
 
     -- trigger client sided emote
     TriggerClientEvent("esx_dreamscratching:startScratchingEmote", _source)
 
-    -- price money
+     local tempsrc = tonumber(_source)
      local randomNumber = math.random(1, totalSumChance)
      local add = 0
      for item,values in pairs(Config.Prices) do
@@ -45,6 +52,7 @@ AddEventHandler("esx_dreamscratching:handler", function(returncooldown, cooldown
 
         if randomNumber > add and randomNumber <= add + chance then
             TriggerClientEvent("esx_dreamscratching:nuiOpenCard", _source, price) -- open the scratch ticket with the random price
+            players[tempsrc] = price -- set the server sided value of the player to the winning price
             return price
         end
         add = add + chance
@@ -64,19 +72,25 @@ AddEventHandler("esx_dreamscratching:deposit", function(amount)
         end
         return
     else 
-        xPlayer.addMoney(amount) -- add the price money to the player
-        TriggerClientEvent("esx_dreamscratching:setCooldown", _source) -- start scratch cooldown
-        if Config.ShowResultTicketNotification then
-            for item,values in pairs(Config.Prices) do
+        local tempsrc = tonumber(_source)
+        if players[tempsrc] == amount then
+            xPlayer.addMoney(amount) -- add the price money to the player
+            TriggerClientEvent("esx_dreamscratching:setCooldown", _source) -- start scratch cooldown
+            if Config.ShowResultTicketNotification then
+                for item,values in pairs(Config.Prices) do
                 local price = values[2]
                 if price == amount then
                     TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, _U('lottery_name'), _U('lottery_subject'), values[3] , 'CHAR_BANK_BOL', 9)
                     return
                 end
+                end
             end
-        end
-        if Config.DebugMode then
-            print(('DEBUG: Succesfully added %s to %s'):format(amount, xPlayer.identifier))
+            if Config.DebugMode then
+                print(('DEBUG: Succesfully added %s to %s'):format(amount, xPlayer.identifier))
+            end
+            return
+        else 
+            print(('%s (%s) somehow managed to trigger the deposit event with a non-matching amount matched to his name'):format(GetPlayerName(_source), GetPlayerIdentifier(_source, 0)))
         end
         return
     end
