@@ -1,4 +1,5 @@
 ESX = nil
+players = {}
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local totalSumChance = 0
@@ -35,7 +36,7 @@ AddEventHandler("esx_dreamscratching:handler", function(returncooldown, cooldown
 
     -- trigger client sided emote
     TriggerClientEvent("esx_dreamscratching:startScratchingEmote", _source)
-
+	local tempsrc = tonumber(_source)
     -- price money
      local randomNumber = math.random(1, totalSumChance)
      local add = 0
@@ -45,6 +46,7 @@ AddEventHandler("esx_dreamscratching:handler", function(returncooldown, cooldown
 
         if randomNumber > add and randomNumber <= add + chance then
             TriggerClientEvent("esx_dreamscratching:nuiOpenCard", _source, price) -- open the scratch ticket with the random price
+		players[tempsrc].money = price
             return price
         end
         add = add + chance
@@ -64,20 +66,24 @@ AddEventHandler("esx_dreamscratching:deposit", function(amount)
         end
         return
     else 
-        xPlayer.addMoney(amount) -- add the price money to the player
-        TriggerClientEvent("esx_dreamscratching:setCooldown", _source) -- start scratch cooldown
-        if Config.ShowResultTicketNotification then
-            for item,values in pairs(Config.Prices) do
-                local price = values[2]
-                if price == amount then
-                    TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, _U('lottery_name'), _U('lottery_subject'), values[3] , 'CHAR_BANK_BOL', 9)
-                    return
-                end
-            end
-        end
-        if Config.DebugMode then
-            print(('DEBUG: Succesfully added %s to %s'):format(amount, xPlayer.identifier))
-        end
-        return
+	local tempsrc = tonumber(_source)
+	if players.[tempsrc].money
+		xPlayer.addMoney(amount) -- add the price money to the player
+		TriggerClientEvent("esx_dreamscratching:setCooldown", _source) -- start scratch cooldown
+		if Config.ShowResultTicketNotification then
+		    for item,values in pairs(Config.Prices) do
+			local price = values[2]
+			if price == amount then
+			    TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, _U('lottery_name'), _U('lottery_subject'), values[3] , 'CHAR_BANK_BOL', 9)
+			    return
+			end
+		    end
+		end
+		if Config.DebugMode then
+		    print(('DEBUG: Succesfully added %s to %s'):format(amount, xPlayer.identifier))
+		end
+		return
+	end
+	return
     end
 end)
