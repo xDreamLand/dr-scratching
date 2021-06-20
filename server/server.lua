@@ -1,5 +1,5 @@
 ESX = nil
-players = {}
+local players = {}
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local totalSumChance = 0
