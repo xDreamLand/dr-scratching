@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'xDreamLand' -- https://forum.cfx.re/u/xDreamLand/summary
 description 'Start scratching! Odds Are Meant To Be Beaten'
-version '1.0.0'
+version '1.1.0'
 
 server_scripts {
     '@es_extended/locale.lua',
