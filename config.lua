@@ -33,8 +33,8 @@ Config.Locale = 'en'
             --- MONEY OR ITEM? ---
             item = {
                 price_is_item   = true,
-                item_name       = 'scratch_ticket',
-                item_label      = 'Scratch Ticket',
+                item_name       = 'water',
+                item_label      = 'Water',
                 item_amount     = 1
             }
         }
