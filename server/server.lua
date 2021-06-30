@@ -9,7 +9,7 @@ for _,priceInfo in pairs(Config.Prices) do
 end
 
 -- triggers client sided check for an active cooldown
-ESX.RegisterUsableItem('scratch_ticket', function(source)
+ESX.RegisterUsableItem(Config.Item, function(source)
     TriggerClientEvent("esx_dreamscratching:isActiveCooldown", source)
 end)
 
@@ -17,7 +17,7 @@ RegisterNetEvent("esx_dreamscratching:handler")
 AddEventHandler("esx_dreamscratching:handler", function(returncooldown, cooldown)
     local _source       = source
     local xPlayer       = ESX.GetPlayerFromId(_source)
-    local count         = xPlayer.getInventoryItem('scratch_ticket').count
+    local count         = xPlayer.getInventoryItem(Config.Item).count
     local tempsrc       = tonumber(_source)
     local randomNumber  = math.random(1, totalSumChance)
     local add           = 0
@@ -35,7 +35,7 @@ AddEventHandler("esx_dreamscratching:handler", function(returncooldown, cooldown
 
     -- Double check if ticket did not randomy dissapear
     if count >= 1 then
-        xPlayer.removeInventoryItem('scratch_ticket', 1)
+        xPlayer.removeInventoryItem(Config.Item, 1)
         if Config.ShowUsedTicketNotification then
             xPlayer.showNotification(_U('used_scratchticket'))
         end

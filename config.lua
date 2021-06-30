@@ -33,7 +33,7 @@ Config.Locale = 'en'
             --- MONEY OR ITEM? ---
             item = {
                 price_is_item   = true,
-                item_name       = 'scratch_ticket',
+                item_name       = Config.Item,
                 item_label      = 'Scratch Ticket',
                 item_amount     = 1
             }
@@ -82,6 +82,8 @@ Config.Locale = 'en'
         }
     }
 }
+
+Config.Item                         = 'scratch_ticket'
 
 Config.ScratchCooldownInSeconds     = 10    -- Cooldown in SECONDS, when will client be able to scratch another ticket?
 
