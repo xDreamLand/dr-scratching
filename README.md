@@ -11,11 +11,6 @@
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/xDreamLand/esx_dreamscratching">
 </p>
 
-
-- Discord Support: https://discord.gg/2RphyJdkqU
-- Forum Post: https://forum.cfx.re/t/free-scratch-card-esx/3461621
-- Author: Ruwbix aka xDreamLand
-
 ## Features
 * ESX, if you got a bit of resource experience you *could* probably change it to a different framework really easily though!
 * NUI included. Not just a boring 'use item' and get money
@@ -43,3 +38,6 @@
 2. Extract into your `resources/` folder (choose wherever you like it to be)
 3. run the `.sql` file, this will add `scratch_ticket` as an item
 4. All set, check the console for errors, if none try it out in-game: `/giveitem [your_playerid] scratch_ticket 1` 
+
+## Using esx_inventoryhud?
+* Go to `esx_inventoryhud/config.lua` and add `scratch_ticket` to the `Config.CloseUiItems`
