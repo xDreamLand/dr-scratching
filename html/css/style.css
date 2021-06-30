@@ -136,7 +136,7 @@ body {
     color: #ffffff;
 }
 
-#price-hidden {
+.hidden {
     display: none;
 }
 

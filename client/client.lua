@@ -66,5 +66,5 @@ end)
 
 -- NUI callback: deposit money
 RegisterNUICallback('deposit', function(data)
-	TriggerServerEvent('esx_dreamscratching:deposit', tonumber(data.amount))
+	TriggerServerEvent('esx_dreamscratching:deposit', data.key, data.price, data.amount, data.type)
 end)

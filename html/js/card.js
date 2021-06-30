@@ -1,24 +1,36 @@
 var debugMode = false;
-var resourceName, toFillInPercentage, win_message, lose_message, currency;
+var resourceName, toFillInPercentage, win_message, lose_message, currency, key, price, price_type, formattedPrice;
 
 $(function() {
     window.addEventListener('message', function(event) {
         if (event.data.type === "openScratch") {
             $('body').fadeIn(500);
 
-            resourceName = event.data.resourceName;
-            debugMode = event.data.debug;
-            toFillInPercentage = event.data.scratchAmount;
-            win_message = event.data.win_message;
-            lose_message = event.data.lose_message;
-            currency = event.data.currency;
+            // Store data out of events in local variables
+            debugMode           = event.data.debug;
+            resourceName        = event.data.resourceName;
+            toFillInPercentage  = event.data.scratchAmount;
+            win_message         = event.data.win_message;
+            lose_message        = event.data.lose_message;
+            currency            = event.data.currency;
+            key                 = event.data.key;
+            price               = event.data.price;
+            amount              = event.data.amount;
+            price_type          = event.data.price_type;
 
-            var price = event.data.price;
-            var formattedPrice = currency + ' ' + Number.parseFloat(price).toFixed(0); // Want decimals? Change 0 -> n of decimals
+            document.getElementById('key-hidden').innerHTML         = key;
+            document.getElementById('price-hidden').innerHTML       = price;
+            document.getElementById('amount-hidden').innerHTML      = amount;
+            document.getElementById('price-type-hidden').innerHTML  = price_type;
 
-            document.getElementById('price-hidden').innerHTML = price;
-            price > 0 ? document.getElementById('price').innerHTML = "<span style='color:#2ECC71'>" + win_message + "</span><br><br><span style='font-size:50px;'>" + formattedPrice + '</span>' : document.getElementById('price').innerHTML = "<span style='color:#B2BABB;text-transform:uppercase;'>" + lose_message + "</span><br><br><span style='font-size:60px;'>" + currency + " 0</span>";
+            if(price_type == 'money') {
+                formattedPrice = currency + ' ' + Number.parseFloat(price).toFixed(0); // Want decimals? Change 0 -> n of decimals
 
+                price > 0 ? document.getElementById('price').innerHTML = "<span style='color:#2ECC71'>" + win_message + "</span><br><br><span style='font-size:50px;'>" + formattedPrice + '</span>' : document.getElementById('price').innerHTML = "<span style='color:#B2BABB;text-transform:uppercase;'>" + lose_message + "</span><br><br><span style='font-size:60px;'>" + currency + " 0</span>";
+            } else {
+
+                document.getElementById('price').innerHTML = "<span style='color:#2ECC71'>" + win_message + "</span><br><span style='font-size:20px;color:#7F8C8D'>" + amount + "x</span><br><span style='font-size:40px;'>" + price + '</span>'
+            }
         } else if (event.data.type === "closeScratch") {
             $('body').fadeOut(500);
         }
@@ -26,13 +38,13 @@ $(function() {
 });
 
 var isDrawing, lastPoint;
-var canvas = document.getElementById('canvas'),
-    ctx = canvas.getContext('2d'),
-    canvasWidth = canvas.width,
-    canvasHeight = canvas.height,
-    image = new Image(),
-    imageSrc = 'img/scratch-here.jpg',
-    brush = new Image();
+var canvas          = document.getElementById('canvas'),
+    ctx             = canvas.getContext('2d'),
+    canvasWidth     = canvas.width,
+    canvasHeight    = canvas.height,
+    image           = new Image(),
+    imageSrc        = 'img/scratch-here.jpg',
+    brush           = new Image();
 
 image.src = imageSrc;
 image.onload = function() {
@@ -102,9 +114,15 @@ function handlePercentage(filledInPixels) {
     if (filledInPixels > toFillInPercentage) {
         try { canvas.parentNode.removeChild(canvas); } catch (err) {}
 
-        var winningAmount = document.getElementById('price-hidden').innerHTML
+        var keyHtml     = document.getElementById('key-hidden').innerHTML;
+        var priceHtml   = document.getElementById('price-hidden').innerHTML;
+        var amountHtml   = document.getElementById('amount-hidden').innerHTML;
+        var typeHtml    = document.getElementById('price-type-hidden').innerHTML;
         $.post('https://' + resourceName + '/deposit', JSON.stringify({
-            amount: winningAmount
+            key:    keyHtml,
+            price:  priceHtml,
+            amount: amountHtml,
+            type:   typeHtml
         }));
     }
 }
