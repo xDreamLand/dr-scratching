@@ -32,3 +32,6 @@ FiveM - Scratching Card Resource
 2. Extract into your `resources/` folder (choose wherever you like it to be)
 3. run the `.sql` file, this will add `scratch_ticket` as an item
 4. All set, check the console for errors, if none try it out in-game: `/giveitem [your_playerid] scratch_ticket 1` 
+
+## Compatibility with esx_inventoryhud
+1. Add `scratch_ticket` to your `Config.CloseUiItems` in esx_inventoryhud:config.lua
