@@ -1,7 +1,7 @@
 # esx_dreamscratching
 FiveM - Scratching Card Resource
 
-- Discord Support: https://discord.gg/kYvKcUVjq4
+- Discord Support: https://discord.gg/2RphyJdkqU
 - Forum Post: https://forum.cfx.re/t/free-scratch-card-esx/3461621
 - Author: Ruwbix aka xDreamLand
 
