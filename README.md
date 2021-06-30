@@ -1,5 +1,16 @@
-# esx_dreamscratching
-FiveM - Scratching Card Resource
+
+![Banner](https://i.iodine.gg/cjge3.png)
+<p align="center">
+  <a href="https://discord.gg/8UXzMwBEdX">
+    <img alt="Dicord" height="20" src="https://img.shields.io/discord/855953501774807060?label=Discord&logo=Discord&logoColor=white">
+  </a>
+  <a href="https://forum.cfx.re/t/free-scratch-card-esx/3461621">
+    <img alt="Website" src="https://img.shields.io/website?down_color=red&down_message=Offline&label=FiveM%20Forum&up_message=Check%20it&url=https%3A%2F%2Fforum.cfx.re%2Ft%2Ffree-scratch-card-esx%2F3461621">
+  </a>
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/xDreamLand/esx_dreamscratching">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/xDreamLand/esx_dreamscratching">
+</p>
+
 
 - Discord Support: https://discord.gg/2RphyJdkqU
 - Forum Post: https://forum.cfx.re/t/free-scratch-card-esx/3461621
