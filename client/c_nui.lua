@@ -1,7 +1,7 @@
 local inMenu = false
 
-RegisterNetEvent("esx_dreamscratching:nuiOpenCard")
-AddEventHandler("esx_dreamscratching:nuiOpenCard", function(key, price, amount, price_type)
+RegisterNetEvent("dr-scratching:nuiOpenCard")
+AddEventHandler("dr-scratching:nuiOpenCard", function(key, price, amount, price_type)
   if inMenu then return end
   SetNuiFocus(true, true)
   SendNUIMessage({
@@ -23,6 +23,6 @@ end)
 RegisterNUICallback('nuiCloseCard', function()
 	SetNuiFocus(false, false)
 	SendNUIMessage({type = 'closeScratch'})
-  TriggerEvent("esx_dreamscratching:stopScratchingEmote")
+  TriggerEvent("dr-scratching:stopScratchingEmote")
   inMenu = false
 end)

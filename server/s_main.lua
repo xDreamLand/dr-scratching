@@ -12,10 +12,10 @@ end)
 
 ESX.RegisterUsableItem('scratch_ticket', function(source)
   DebugPrint(('%s just used a scratching ticket.'):format(GetPlayerName(source)))
-  TriggerClientEvent("esx_dreamscratching:isActiveCooldown", source)
+  TriggerClientEvent("dr-scratching:isActiveCooldown", source)
 end)
 
-RegisterNetEvent("esx_dreamscratching:handler", function(returncooldown, cooldown)
+RegisterNetEvent("dr-scratching:handler", function(returncooldown, cooldown)
   local _source <const> = source
   local tempsrc <const> = tonumber(_source)
   local playerName, playerIdentifier = GetPlayerName(_source), GetPlayerIdentifier(_source, 0)
@@ -43,7 +43,7 @@ RegisterNetEvent("esx_dreamscratching:handler", function(returncooldown, cooldow
     return
   end
 
-  TriggerClientEvent("esx_dreamscratching:startScratchingEmote", _source)
+  TriggerClientEvent("dr-scratching:startScratchingEmote", _source)
     for key,priceInfo in pairs(Config.Prices) do
       local chance = priceInfo['chance']
       if randomNumber > add and randomNumber <= add + chance then
@@ -59,14 +59,14 @@ RegisterNetEvent("esx_dreamscratching:handler", function(returncooldown, cooldow
           price_type = 'item'
         end
         players[tempsrc] = tostring(price)
-        TriggerClientEvent("esx_dreamscratching:nuiOpenCard", _source, key, price, amount, price_type)
+        TriggerClientEvent("dr-scratching:nuiOpenCard", _source, key, price, amount, price_type)
         return price
       end
       add = add + chance
     end
 end)
 
-RegisterNetEvent("esx_dreamscratching:deposit", function(key, price, amount, type)
+RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
   local _source = source
   local playerName, playerIdentifier = GetPlayerName(_source), GetPlayerIdentifier(_source, 0)
   local xPlayer = ESX.GetPlayerFromId(_source)
@@ -116,6 +116,6 @@ RegisterNetEvent("esx_dreamscratching:deposit", function(key, price, amount, typ
     end
   end
     DebugPrint(("Succesfully added %s to %s"):format(price, xPlayer.identifier))
-    TriggerClientEvent("esx_dreamscratching:setCooldown", _source)
+    TriggerClientEvent("dr-scratching:setCooldown", _source)
     return
 end)
