@@ -1,16 +1,21 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'xDreamLand' -- https://forum.cfx.re/u/xDreamLand/summary
 description 'Start scratching! Odds Are Meant To Be Beaten'
-version '1.1.0'
+author 'Dream Resources' -- https://forum.cfx.re/u/xDreamLand/summary
+version '2.0.0'
+repository 'https://github.com/xDreamLand/esx_dreamscratching'
+
+lua54 'yes'
 
 server_scripts {
     '@es_extended/locale.lua',
     'locales/en.lua',
     'config.lua',
 
-    'server/server.lua'
+    'shared/utils.lua',
+    'server/s_main.lua',
+    'server/s_version.lua'
 }
 
 client_scripts {
@@ -18,8 +23,8 @@ client_scripts {
     'locales/en.lua',
     'config.lua',
 
-    'client/client.lua',
-    'client/nui.lua'
+    'client/c_main.lua',
+    'client/c_nui.lua',
 }
 
 ui_page "html/index.html"
@@ -30,8 +35,4 @@ files {
     'html/css/*.css',
     'html/img/*.png',
     'html/img/*.jpg'
-}
-
-dependencies {
-    'es_extended' -- https://github.com/esx-framework/es_extended/tree/v1-final
 }
