@@ -10,34 +10,11 @@
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/xDreamLand/dr-scratching">
 </p>
 
-## Features
-* ESX, if you got a bit of resource experience you *could* probably change it to a different framework really easily though!
-* NUI included. Not just a boring 'use item' and get money
-* Language configuration (includes currency, notifications, ...)
-* Really customizable! (Change e.g. win/lose changes, price money, notifications, scratch amount, ...)
-* Included `.sql` file. Easily addable to existing items (so you could add it to your shop)
-* Built-in debug mode
-* Built-in cooldown system, gamble responsible kids :relieved:
-* Lightweight resource!
-* Version checks.
+# dr-scratching
+Hello, and welcome to **dr-scratching**! This is an ESX resource for FiveM which lets you scratch tickets which'll let you win stuff (or nothing)! A ticket is a simple usable item. So you can for example give a scratch ticket every couple of hours, orrrr you can just sell them in shops orr maybe you can even configure it that you can just find them? Do whatever you want with them!
 
-## Config
-* Language
-* Cooldown timer (can be set to 0, so disabled)
-* Show notification on active cooldown?
-* Show notification when using a ticket?
-* Show notification of your winnings?
-* Required scratching surface which has to be removed in order for price to be detected
-* Debug mode
-* Win chances, prices & messages of prices
+dr-scratching is made in a way that you can completely customize it. You can change the prices, win chances, and much more!
 
-## Installation
+**Installation guide?** Please see the Wiki!
 
-### es_extended is required (for other frameworks, remove dependencies {  }   in fxmanifest.lua)
-1. Download the latest version here
-2. Extract into your `resources/` folder (choose wherever you like it to be)
-3. run the `.sql` file, this will add `scratch_ticket` as an item
-4. All set, check the console for errors, if none try it out in-game: `/giveitem [your_playerid] scratch_ticket 1` 
-
-## Using esx_inventoryhud?
-* Go to `esx_inventoryhud/config.lua` and add `scratch_ticket` to the `Config.CloseUiItems`
+**dr-scratching** is a free resource, and not a paid resource like many out there. If you're willing to support the creator, please check out: [**https://buymeacoffee.com/dreamresources**](https://www.buymeacoffee.com/dreamresources)! Anything helps!
