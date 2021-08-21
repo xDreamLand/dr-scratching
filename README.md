@@ -19,6 +19,7 @@
 * Built-in debug mode
 * Built-in cooldown system, gamble responsible kids :relieved:
 * Lightweight resource!
+* Version checks.
 
 ## Config
 * Language
