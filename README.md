@@ -11,7 +11,11 @@
 </p>
 
 # dr-scratching
-Hello, and welcome to **dr-scratching**! This is an ESX resource for FiveM which lets you scratch tickets which'll let you win stuff (or nothing)! A ticket is a simple usable item. So you can for example give a scratch ticket every couple of hours, orrrr you can just sell them in shops orr maybe you can even configure it that you can just find them? Do whatever you want with them!
+This is the ESX repository. Looking for the **QBCore version**? [Click Me](https://github.com/xDreamLand/dr-scratching-qbcore)!
+
+Hello, and welcome to **dr-scratching**! 
+
+dr-scratching is a resource for FiveM which lets you scratch tickets which will let you win stuff (or nothing)! A ticket is a simple usable item. So you can for example give a scratch ticket every couple of hours, orrrr you can just sell them in shops orr maybe you can even configure it that you can just find them? Do whatever you want with them!
 
 dr-scratching is made in a way that you can completely customize it. You can change the prices, win chances, and much more!
 
