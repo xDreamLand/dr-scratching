@@ -15,7 +15,7 @@ AddEventHandler("dr-scratching:nuiOpenCard", function(key, price, amount, price_
     currency = _U('currency'),
     scratchAmount = Config.ScratchAmount,
     resourceName = GetCurrentResourceName(),
-    debug = Config.DebugMode
+    debug = debugIsEnabled
   })
   inMenu = true
 end)

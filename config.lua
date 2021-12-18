@@ -72,10 +72,17 @@ Config.Locale = 'en'
   }
 }
 
-Config.ExitKeys = {""}
+Config.Webhooks = {
+  webhooksEnabled = true, -- enable/disable webhooks. Place your 'Discord WEBHOOK URL' in server/s_webhooks.lua:1
+  logProperties = {
+    possibleCheatingAttempt = true, -- will trigger on possible cheating attempt
+    winMessages = true, -- will trigger on win (both money and item)
+    loseMessages = false, -- will trigger on lose
+  },
+}
+
 Config.ScratchCooldownInSeconds = 10 -- Cooldown in SECONDS, when will client be able to scratch another ticket?
 Config.ShowCooldownNotifications = true -- Show a notification to client with the remaining cooldown timer
 Config.ShowUsedTicketNotification = true  -- Show a notification to client whenever a ticket is used
 Config.ShowResultTicketNotification = true  -- Show a notification with message of price ticket. See Config.Prices.message
 Config.ScratchAmount = 80    -- Percentage of the ticket that needs to be scrapped away for the price to be 'seen'
-Config.DebugMode = false -- Something not working? Locate the issue with the debug mode. default: false

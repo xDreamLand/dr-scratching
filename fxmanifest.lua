@@ -15,6 +15,7 @@ server_scripts {
 
     'shared/utils.lua',
     'server/s_main.lua',
+    'server/s_webhooks.lua',
     'server/s_version.lua'
 }
 

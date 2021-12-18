@@ -1,5 +1,5 @@
-local currentResourceName <const> = GetCurrentResourceName()
-local debugIsEnabled <const> = GetConvarInt(('%s-debugMode'):format(currentResourceName), 0) == 1
+currentResourceName = GetCurrentResourceName()
+debugIsEnabled = GetConvarInt(('%s-debugMode'):format(currentResourceName), 0) == 1
 
 function DebugPrint(...)
   if not debugIsEnabled then return end

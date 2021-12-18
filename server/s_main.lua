@@ -38,32 +38,34 @@ RegisterNetEvent("dr-scratching:handler", function(returncooldown, cooldown)
     if Config.ShowUsedTicketNotification then
       xPlayer.showNotification(_U('used_scratchticket'))
     end
+    sendWebhook(playerName, playerIdentifier, "important", "Player triggered event without having said scratching ticket")
   else
     Print(("%s (%s) somehow used a scratching ticket without having one. Possible cheating attempt."):format(playerName, playerIdentifier))
     return
   end
 
   TriggerClientEvent("dr-scratching:startScratchingEmote", _source)
-    for key,priceInfo in pairs(Config.Prices) do
-      local chance = priceInfo['chance']
-      if randomNumber > add and randomNumber <= add + chance then
-        local price_is_item = priceInfo['price']['item']['price_is_item']
-        local amount = priceInfo['price']['item']['item_amount']
-        local price_type, price = nil
 
-        if not price_is_item then
+  for key,priceInfo in pairs(Config.Prices) do
+    local chance = priceInfo['chance']
+    if randomNumber > add and randomNumber <= add + chance then
+      local price_is_item = priceInfo['price']['item']['price_is_item']
+      local amount = priceInfo['price']['item']['item_amount']
+      local price_type, price = nil
+
+      if not price_is_item then
           price = priceInfo['price']['price_money']
           price_type = 'money'
-        else 
-          price = priceInfo['price']['item']['item_label']
-          price_type = 'item'
-        end
-        players[tempsrc] = tostring(price)
-        TriggerClientEvent("dr-scratching:nuiOpenCard", _source, key, price, amount, price_type)
-        return price
+      else 
+        price = priceInfo['price']['item']['item_label']
+        price_type = 'item'
       end
-      add = add + chance
+      players[tempsrc] = tostring(price)
+      TriggerClientEvent("dr-scratching:nuiOpenCard", _source, key, price, amount, price_type)
+      return price
     end
+    add = add + chance
+  end
 end)
 
 RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
@@ -74,7 +76,10 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
   local giveItem = false
   local giveMoney = false
   local passed = false
+  local priceAmount = nil
+
   if players[tempsrc] ~= tostring(price) then
+    sendWebhook(playerName, playerIdentifier, "important", "Player triggered event with a non matching price assigned to name. Assigned price: " .. players[tempsrc] .. " Requested price: " .. tostring(price) .. ". Possible unauthorized event trigger")
     Print(("%s (%s) somehow managed to trigger the deposit event with a non-matching price matching to his/her name. Assigned price: %s - Requested price: %s Possible cheating attempt."):format(resourceName, playerName, playerIdentifier, players[tempsrc], tostring(price)))
     players[tempsrc] = nil
     return
@@ -83,6 +88,7 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
   if type == 'money' then
     local winningAmount = tonumber(price)
     if winningAmount == nil or winningAmount < 0 then
+      sendWebhook(playerName, playerIdentifier, "important", "Invalid price provided, provided money price: " .. winningAmount)
       Print(("%s (%s) Invalid price provided. Possible cheating attempt. Provided price: %s"):format(playerName, playerIdentifier, winningAmount))
       players[tempsrc] = nil
       return
@@ -93,7 +99,7 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
   end
   for priceKey,priceInfo in pairs(Config.Prices) do
     if priceKey == key then
-      local priceAmount = priceInfo["price"]["item"]["item_amount"]
+      priceAmount = priceInfo["price"]["item"]["item_amount"]
       if Config.ShowResultTicketNotification then
         TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, _U('lottery_name'), _U('lottery_subject'), priceInfo['message'] , 'CHAR_BANK_BOL', 9)
       end
@@ -103,6 +109,7 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
           DebugPrint(("Succesfully added price (item: %sx %s) to %s (%s)"):format(priceAmount, price, playerName, playerIdentifier))
           xPlayer.addInventoryItem(price, priceAmount)
         else
+          sendWebhook(playerName, playerIdentifier, "important", "Player managed to trigger deposit event with a non-matching item. Possible unauthorized event trigger")
           Print(("%s (%s) somehow managed to trigger the deposit event with a non-matching item. Possible cheating attempt."):format(playerName, playerIdentifier))
           players[tempsrc] = nil
           return
@@ -112,6 +119,7 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
           DebugPrint(("Succesfully added price (money: %s) to %s (%s)"):format(price, playerName, playerIdentifier))
           xPlayer.addMoney(price)
         else
+          sendWebhook(playerName, playerIdentifier, "important", "Player managed to trigger deposit event with a non-matching money amount. Possible unauthorized event trigger")
           Print(("%s (%s) somehow managed to trigger the deposit event with a non-matching amount. Possible cheating attempt."):format(playerName, playerIdentifier))
           players[tempsrc] = nil
           return
@@ -119,7 +127,7 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
       end
     end
   end
-    DebugPrint(("Succesfully added %s to %s"):format(price, xPlayer.identifier))
+    sendWebhook(playerName, playerIdentifier, type, price, priceAmount)
     TriggerClientEvent("dr-scratching:setCooldown", _source)
     players[tempsrc] = nil
     return
