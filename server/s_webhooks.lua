@@ -75,7 +75,6 @@ function sendWebhook(name, identifier, type, value, amount)
     if tonumber(value) == 0 and Config.Webhooks.logProperties.loseMessages then
       webHookMessage = loseMessage
     elseif tonumber(value) > 0 and Config.Webhooks.logProperties.winMessages then
-      print("test")
       webHookMessage = winMessage
     else
       return
@@ -89,6 +88,5 @@ function sendWebhook(name, identifier, type, value, amount)
   end
 
   PerformHttpRequest(webhook, function(err, text, headers)
-    Print("send")
   end, 'POST', json.encode(webHookMessage), {['Content-Type'] = 'application/json'})
 end
