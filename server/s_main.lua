@@ -38,8 +38,8 @@ RegisterNetEvent("dr-scratching:handler", function(returncooldown, cooldown)
     if Config.ShowUsedTicketNotification then
       xPlayer.showNotification(_U('used_scratchticket'))
     end
-    sendWebhook(playerName, playerIdentifier, "important", "Player triggered event without having said scratching ticket")
   else
+    sendWebhook(playerName, playerIdentifier, "important", "Player triggered event without having said scratching ticket")
     Print(("%s (%s) somehow used a scratching ticket without having one. Possible cheating attempt."):format(playerName, playerIdentifier))
     return
   end
