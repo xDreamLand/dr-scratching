@@ -75,7 +75,8 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
   local giveMoney = false
   local passed = false
   if players[tempsrc] ~= tostring(price) then
-    Print(("%s (%s) somehow managed to trigger the deposit event with a non-matching price matching to his/her name. Possible cheating attempt."):format(resourceName, playerName, playerIdentifier))
+    Print(("%s (%s) somehow managed to trigger the deposit event with a non-matching price matching to his/her name. Assigned price: %s - Requested price: %s Possible cheating attempt."):format(resourceName, playerName, playerIdentifier, players[tempsrc], tostring(price)))
+    players[tempsrc] = nil
     return
   end
 
@@ -83,6 +84,7 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
     local winningAmount = tonumber(price)
     if winningAmount == nil or winningAmount < 0 then
       Print(("%s (%s) Invalid price provided. Possible cheating attempt. Provided price: %s"):format(playerName, playerIdentifier, winningAmount))
+      players[tempsrc] = nil
       return
     end
     giveMoney = true
@@ -102,6 +104,7 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
           xPlayer.addInventoryItem(price, priceAmount)
         else
           Print(("%s (%s) somehow managed to trigger the deposit event with a non-matching item. Possible cheating attempt."):format(playerName, playerIdentifier))
+          players[tempsrc] = nil
           return
         end
       elseif type == 'money' and giveMoney == true then
@@ -110,6 +113,7 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
           xPlayer.addMoney(price)
         else
           Print(("%s (%s) somehow managed to trigger the deposit event with a non-matching amount. Possible cheating attempt."):format(playerName, playerIdentifier))
+          players[tempsrc] = nil
           return
         end
       end
@@ -117,5 +121,6 @@ RegisterNetEvent("dr-scratching:deposit", function(key, price, amount, type)
   end
     DebugPrint(("Succesfully added %s to %s"):format(price, xPlayer.identifier))
     TriggerClientEvent("dr-scratching:setCooldown", _source)
+    players[tempsrc] = nil
     return
 end)
