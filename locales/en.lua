@@ -10,4 +10,16 @@ Locales['en'] = {
     ['currency'] = '$',
     ['scratch_lost'] = 'You Lost :(', -- default UPPERCASE
     ['scratch_won'] = 'You Won!',
+
+    -- Webhooks
+    -- Want to use Discords markdown text? Use:
+    -- https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-
+
+    ['webhook_resourceName'] = "[ %s ]", -- %s <resource name>
+    ['webhook_identifier'] = 'Identifier', -- current player his/her identifier
+    ['webhook_winMessage_cash'] = '**%s** won $%s whilst using a scratch ticket!', -- (1) %s <name> (2) %s <cash amount>
+    ['webhook_winMessage_item'] = '**%s** won %sx %s whilst using a scratch ticket!', -- (1) %s <name> (2) %s <amount> (3) <item name>
+    ['webhook_loseMessage'] = '**%s** lost whilst using a scratch ticket.', -- %s <name>
+    ['webhook_possibleCheatingAttempt'] = '**%s** triggered the *possible* cheatting attempt.', -- %s <name>
+    ['webhook_message'] = 'Message' -- cheating attempt message header
 }

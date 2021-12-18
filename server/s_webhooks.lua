@@ -1,4 +1,4 @@
-local webhook <const> = "https://discord.com/api/webhooks/my-secret-webhook" -- do not share your webhook with others
+local webhook <const> = "https://discord.com/api/webhooks/your-secret-key" -- do not share your webhook with others
 local mentionStaffRoleId <const> = nil -- will only mention on possible cheating attempt, set to 'nil' for no mentions 
 
 function sendWebhook(name, identifier, type, value, amount)
@@ -8,16 +8,16 @@ function sendWebhook(name, identifier, type, value, amount)
     ["content"] = null,
     ["embeds"] = {
       {
-        ["description"] = "**" .. name .. "** won " .. (type == "item" and amount .. "x " .. value or "$" .. value) .." whilst using a scratch ticket!",
+        ["description"] = (type == "item" and _U("webhook_winMessage_item", name, amount, value) or _U("webhook_winMessage_cash", name, value)),
         ["fields"] = {
           {
-            ["name"] = "Identifier",
+            ["name"] = _U("webhook_identifier"),
             ["value"] = identifier
           }
         },
         ["color"] = 11267014, -- https://www.spycolor.com/ Decimal Value
         ["author"] = {
-          ["name"] = "[ " .. currentResourceName .." ]",
+          ["name"] = _U("webhook_resourceName", currentResourceName),
           ["url"] = "https://github.com/xDreamLand/dr-scratching"
         },
         ["timestamp"] = os.date("!%Y%m%dT%H%M%S")
@@ -29,16 +29,16 @@ function sendWebhook(name, identifier, type, value, amount)
     ["content"] = null,
     ["embeds"] = {
       {
-        ["description"] = name .. " lost whilst using a scratch ticket.",
+        ["description"] = _U("webhook_loseMessage", name),
         ["fields"] = {
           {
-            ["name"] = "Identifier",
+            ["name"] = _U("webhook_identifier"),
             ["value"] = identifier
           }
         },
         ["color"] = 16440280, -- https://www.spycolor.com/ Decimal Value
         ["author"] = {
-          ["name"] = "[ " .. currentResourceName .." ]",
+          ["name"] = _U("webhook_resourceName", currentResourceName),
           ["url"] = "https://github.com/xDreamLand/dr-scratching"
         },
         ["timestamp"] = os.date("!%Y%m%dT%H%M%S")
@@ -50,20 +50,20 @@ function sendWebhook(name, identifier, type, value, amount)
     ["content"] = (mentionStaffRoleId and ("<@&" .. mentionStaffRoleId .. ">") or null),
     ["embeds"] = {
       {
-        ["description"] = "**" .. name .. "** triggered the *possible* cheatting attempt.",
+        ["description"] = _U("webhook_possibleCheatingAttempt", name),
         ["fields"] = {
           {
-            ["name"] = "Message",
+            ["name"] = _U("webhook_message"),
             ["value"] = "`" .. value .. "`."
           },
           {
-            ["name"] = "Identifier",
+            ["name"] = _U("webhook_identifier"),
             ["value"] = identifier
           }
         },
         ["color"] = 11088422, -- https://www.spycolor.com/ Decimal Value
         ["author"] = {
-          ["name"] = "[ " .. currentResourceName .." ]",
+          ["name"] = _U("webhook_resourceName", currentResourceName),
           ["url"] = "https://github.com/xDreamLand/dr-scratching"
         },
         ["timestamp"] = os.date("!%Y%m%dT%H%M%S")
