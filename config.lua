@@ -81,8 +81,8 @@ Config.Webhooks = {
   },
 }
 
-Config.ScratchCooldownInSeconds = 10 -- Cooldown in SECONDS, when will client be able to scratch another ticket?
-Config.ShowCooldownNotifications = true -- Show a notification to client with the remaining cooldown timer
-Config.ShowUsedTicketNotification = true  -- Show a notification to client whenever a ticket is used
+Config.ScratchCooldownInSeconds = 10 -- Cooldown in SECONDS, when will player be able to scratch another ticket?
+Config.ShowCooldownNotifications = true -- Show a notification to player with the remaining cooldown timer
+Config.ShowUsedTicketNotification = true  -- Show a notification to player whenever a ticket is used
 Config.ShowResultTicketNotification = true  -- Show a notification with message of price ticket. See Config.Prices.message
 Config.ScratchAmount = 80    -- Percentage of the ticket that needs to be scrapped away for the price to be 'seen'

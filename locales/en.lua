@@ -9,5 +9,5 @@ Locales['en'] = {
     ['used_scratchticket'] = 'You ~g~succesfully~s~ used a ~p~scratching ticket~s~.',
     ['currency'] = '$',
     ['scratch_lost'] = 'You Lost :(', -- default UPPERCASE
-    ['stract_won'] = 'You Won!'
+    ['scratch_won'] = 'You Won!',
 }

@@ -10,7 +10,7 @@ AddEventHandler("dr-scratching:nuiOpenCard", function(key, price, amount, price_
     price = price,
     amount = amount,
     price_type = price_type,
-    win_message = _U('stract_won'),
+    win_message = _U('scratch_won'),
     lose_message = _U('scratch_lost'),
     currency = _U('currency'),
     scratchAmount = Config.ScratchAmount,
