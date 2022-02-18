@@ -11,6 +11,7 @@ lua54 'yes'
 server_scripts {
     '@es_extended/locale.lua',
     'locales/en.lua',
+    'locales/cs.lua',
     'config.lua',
 
     'shared/utils.lua',
@@ -22,6 +23,7 @@ server_scripts {
 client_scripts {
     '@es_extended/locale.lua',
     'locales/en.lua',
+    'locales/cs.lua',
     'config.lua',
 
     'client/c_main.lua',
