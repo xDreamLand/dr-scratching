@@ -3,13 +3,17 @@ game 'gta5'
 
 description 'Start scratching! Odds Are Meant To Be Beaten'
 author 'Dream Resources' -- https://forum.cfx.re/u/xDreamLand/summary
-version '3.2.0'
+version '3.3.0'
 repository 'https://github.com/xDreamLand/dr-scratching'
 
 lua54 'yes'
 
+shared_scripts {
+  '@es_extended/imports.lua', 
+  '@es_extended/locale.lua' 
+}
+
 server_scripts {
-    '@es_extended/locale.lua',
     'locales/en.lua',
     'config.lua',
 
@@ -20,7 +24,6 @@ server_scripts {
 }
 
 client_scripts {
-    '@es_extended/locale.lua',
     'locales/en.lua',
     'config.lua',
 

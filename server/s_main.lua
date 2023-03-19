@@ -1,8 +1,5 @@
-local ESX = nil 
 local players = {}
 local totalSumChance = 0
-
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 CreateThread(function()
   for _,priceInfo in pairs(Config.Prices) do
