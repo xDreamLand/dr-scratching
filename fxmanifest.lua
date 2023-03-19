@@ -15,6 +15,7 @@ shared_scripts {
 
 server_scripts {
     'locales/en.lua',
+    'locales/cs.lua',
     'config.lua',
 
     'shared/utils.lua',
@@ -25,6 +26,7 @@ server_scripts {
 
 client_scripts {
     'locales/en.lua',
+    'locales/cs.lua',
     'config.lua',
 
     'client/c_main.lua',
